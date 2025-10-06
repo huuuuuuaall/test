@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стили речи - опрос для 6 класса</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            transition: background-color 0.5s ease;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        
+        .question h3 {
+            margin-top: 0;
+            color: #444;
+        }
+        
+        .subquestion {
+            margin-bottom: 15px;
+        }
+        
+        .subquestion label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+        
+        .red-bg {
+            background-color: #ffcccc;
+        }
+        
+        .blue-bg {
+            background-color: #cce5ff;
+        }
+        
+        .green-bg {
+            background-color: #ccffcc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Опрос по теме "Стили речи"</h1>
+        <p>Ответьте на вопросы, вписывая ответы в текстовые поля.</p>
+        
+        <form id="quizForm">
+            <!-- Вопрос 1 -->
+            <div class="question">
+                <h3>Вопрос 1: Художественный стиль</h3>
+                
+                <div class="subquestion">
+                    <label for="q1_1">1.1. Какова основная цель художественного стиля?</label>
+                    <input type="text" id="q1_1" name="q1_1">
+                </div>
+                
+                <div class="subquestion">
+                    <label for="q1_2">1.2. Назовите 2 жанра, в которых используется художественный стиль:</label>
+                    <input type="text" id="q1_2" name="q1_2">
+                </div>
+                
+                <div class="subquestion">
+                    <label for="q1_3">1.3. Какие языковые средства характерны для художественного стиля?</label>
+                    <input type="text" id="q1_3" name="q1_3">
+                </div>
+            </div>
+            
+            <!-- Вопрос 2 -->
+            <div class="question">
+                <h3>Вопрос 2: Научный стиль</h3>
+                
+                <div class="subquestion">
+                    <label for="q2_1">2.1. Какова основная цель научного стиля?</label>
+                    <input type="text" id="q2_1" name="q2_1">
+                </div>
+                
+                <div class="subquestion"><label for="q2_2">2.2. Назовите 2 жанра, в которых используется научный стиль:</label>
+                    <input type="text" id="q2_2" name="q2_2">
+                </div>
+                
+                <div class="subquestion">
+                    <label for="q2_3">2.3. Какие языковые средства характерны для научного стиля?</label>
+                    <input type="text" id="q2_3" name="q2_3">
+                </div>
+            </div>
+            
+            <!-- Вопрос 3 -->
+            <div class="question">
+                <h3>Вопрос 3: Разговорный стиль</h3>
+                
+                <div class="subquestion">
+                    <label for="q3_1">3.1. Какова основная цель разговорного стиля?</label>
+                    <input type="text" id="q3_1" name="q3_1">
+                </div>
+                
+                <div class="subquestion">
+                    <label for="q3_2">3.2. Назовите 2 жанра, в которых используется разговорный стиль:</label>
+                    <input type="text" id="q3_2" name="q3_2">
+                </div>
+                
+                <div class="subquestion">
+                    <label for="q3_3">3.3. Какие языковые средства характерны для разговорного стиля?</label>
+                    <input type="text" id="q3_3" name="q3_3">
+                </div>
+            </div>
+            
+            <button type="button" onclick="checkAnswers()">Проверить ответы</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            // Правильные ответы
+            const correctAnswers = {
+                q1_1: "передача эмоций, создание художественных образов",
+                q1_2: "рассказ, стихотворение, роман, повесть, поэма",
+                q1_3: "эпитеты, метафоры, сравнения, олицетворения",
+                q2_1: "передача точной информации, объяснение фактов",
+                q2_2: "учебник, научная статья, доклад, реферат",
+                q2_3: "термины, точные формулировки, логичность изложения",
+                q3_1: "общение в неформальной обстановке",
+                q3_2: "диалог, беседа, письмо другу",
+                q3_3: "просторечия, неполные предложения, междометия"
+            };
+            
+            // Проверка ответов
+            let correctCount = 0;
+            const totalQuestions = 9;
+            
+            for (let i = 1; i <= 3; i++) {
+                for (let j = 1; j <= 3; j++) {
+                    const questionId = q${i}_${j};
+                    const userAnswer = document.getElementById(questionId).value.toLowerCase().trim();
+                    const correctAnswer = correctAnswers[questionId].toLowerCase();
+                    
+                    // Проверяем, содержит ли ответ пользователя ключевые слова из правильного ответа
+                    const correctWords = correctAnswer.split(', ');
+                    let isCorrect = false;
+                    
+                    for (const word of correctWords) {
+                        if (userAnswer.includes(word)) {
+                            isCorrect = true;
+                            break;
+                        }
+                    }
+                    
+                    if (isCorrect) {
+                        correctCount++;
+                        document.getElementById(questionId).style.backgroundColor = "#ccffcc";
+                    } else {
+                        document.getElementById(questionId).style.backgroundColor = "#ffcccc";
+                    }
+                }
+            }
+            
+            // Подсчет процентов
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            
+            // Отображение результата
+            const resultDiv = document.getElementById("result");
+resultDiv.style.display = "block";
+            resultDiv.textContent = Ваш результат: ${correctCount} из ${totalQuestions} (${percentage}%);
+            
+            // Изменение цвета фона в зависимости от результата
+            if (percentage <= 41) {
+                document.body.className = "red-bg";
+                resultDiv.textContent += " - Нужно повторить материал!";
+            } else if (percentage <= 72) {
+                document.body.className = "blue-bg";
+                resultDiv.textContent += " - Хороший результат!";
+            } else {
+                document.body.className = "green-bg";
+                resultDiv.textContent += " - Отличный результат!";
+            }
+        }
+    </script>
+</body>
+</html>
